@@ -356,9 +356,8 @@ class DiffusionClient:
     self.revision = revision
   def setUpPipe(self, type):
     if self.model_loaded:
-      return
-    if type == self.pipe_type:
-      return
+      if type == self.pipe_type:
+        return
     if type == "text2img":
       print("setup text2img")
       if self.text_encoder is None:
