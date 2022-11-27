@@ -358,6 +358,7 @@ class DiffusionClient:
     if self.model_loaded:
       if type == self.pipe_type:
         return
+    self.model_loaded = True
     if type == "text2img":
       print("setup text2img")
       if self.text_encoder is None:
@@ -458,8 +459,7 @@ class DiffusionClient:
       sys.exit()
 
     if self.nsfw_ok:
-      def dummy(images, **kwargs): return images, False 
-      self.pipe.safety_checker = dummy
+      self.pipe.safety_checker = None
     if self.less_memory:
       self.pipe.enable_attention_slicing()
   def showResults(self, cols, saveGrid = True):
